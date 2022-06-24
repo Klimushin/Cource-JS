@@ -1,4 +1,5 @@
 const str = prompt('', '')
 const arr = str.split(',')
+arr.sort()
 console.log(arr)
 console.log(arr.join('-'))
