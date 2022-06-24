@@ -46,6 +46,9 @@ addForm.addEventListener('submit', (event) => {
         if (addFilm.length > 15) {
             addFilm = `${addFilm.slice(0, 15)}...`
         }
+        if (fav) {
+            alert('Мы добавили любимый фильм')
+        }
         movieDB.movies.push(addFilm)
         movieDB.movies.sort()
         createMovieList(movieDB.movies, movieList)
