@@ -30,7 +30,7 @@ const movieDB = {
     ]
 };
 
-const promo = document.querySelectorAll('.promo__adv img'),
+const promo = document.querySelectorAll('.promo__adv'),
       poster = document.querySelector('.promo__bg'),
       genre = document.querySelector('.promo__genre'),
       movieList = document.querySelector('.promo__interactive-list'),
