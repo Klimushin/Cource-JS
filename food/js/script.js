@@ -147,7 +147,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   forms.forEach(item => {
     postData(item)
-    console.log(item)
   })
 
 
@@ -161,21 +160,29 @@ window.addEventListener('DOMContentLoaded', () => {
       statusMessage.textContent = message.loading
       form.append(statusMessage)
 
-
-      const request = new XMLHttpRequest()
-      request.open('POST', 'server.php')
-      
-      request.setRequestHeader('Content-type', 'multipart/form-data')
       const formData = new FormData(form)
 
-      request.send(formData)
+      const object = {}
+      formData.forEach(function(value, key) {
+        object[key]=value
+      })
 
-      request.addEventListener('load', () => {
-        if (request.status === 200) {
-          statusMessage.textContent = message.success
-        } else {
-          statusMessage.textContent = message.failure
-        }
+      fetch('https://jsonplacehollder.typicode.com/posts', {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(object)
+      })
+      .then(data => {
+        console.log(data)
+        statusMessage.textContent = message.success
+      })
+      .catch(() => {
+        statusMessage.textContent = message.failure
+      })
+      .finally(() => {
+        form.reset()
       })
     })
   }
